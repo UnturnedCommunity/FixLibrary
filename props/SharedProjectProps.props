@@ -1,0 +1,27 @@
+<Project>
+
+  <PropertyGroup>
+    <RepositoryType>git</RepositoryType>
+    <Authors>FixLibrary</Authors>
+    <Company>UnturnedCommunity</Company>
+    <FixLibraryVersion>0.0.0</FixLibraryVersion>
+    <Version>$(FixLibraryVersion)</Version>
+    <InformationalVersion>$(FixLibraryVersion)</InformationalVersion>
+    <Copyright>FixLibrary and their contributors</Copyright>
+    <RepositoryUrl>https://github.com/UnturnedCommunity/FixLibrary</RepositoryUrl>
+    <LangVersion>preview</LangVersion>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <Prefer32Bit>false</Prefer32Bit>
+    <Nullable>enable</Nullable>
+    <NoWarn>$(NoWarn);NU1701;NU1702;CS0436;CS1591</NoWarn>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+</Project>

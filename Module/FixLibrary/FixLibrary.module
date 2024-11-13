@@ -1,0 +1,11 @@
+{
+	"Name": "FixLibrary",
+	"Version": "0.0.0.0",
+	"Assemblies":
+	[
+		{
+			"Path": "/FixLibrary.dll",
+			"Role": "Server"
+		}
+	]
+}

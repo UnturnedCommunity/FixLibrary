@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RocketModFix.UnityEngine.Redist" Version="*">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="RocketModFix.Unturned.Redist.Server" Version="*">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <Target Name="FixLibraryModuleArtifacts" AfterTargets="PostBuildEvent">
+
+    <ItemGroup>
+      <FixLibraryFiles Include="$(OutDir)*FixLibrary*.dll"/>
+      <FixLibraryModuleFiles Include="Module/FixLibrary/*"/>
+      <FixLibraryInstallationGuides Include="Module/InstallationGuides/*.txt"/>
+      <FixLibraryRuntimeLibs Include="Module/RuntimeLibs/*.dll"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+      <FixLibraryOutputDirectory>$(OutDir)FixLibrary/FixLibrary</FixLibraryOutputDirectory>
+    </PropertyGroup>
+
+    <MakeDir Directories="$(FixLibraryUnturnedOutputDirectory)"/>
+
+    <Copy SourceFiles="@(FixLibraryInstallationGuides)" DestinationFolder="$(FixLibraryOutputDirectory)\.."/>
+    <Copy SourceFiles="@(FixLibraryFiles)" DestinationFolder="$(FixLibraryOutputDirectory)"/>
+    <Copy SourceFiles="@(FixLibraryModuleFiles)" DestinationFolder="$(FixLibraryOutputDirectory)"/>
+    <Copy SourceFiles="@(FixLibraryRuntimeLibs)" DestinationFolder="$(FixLibraryOutputDirectory)"/>
+
+  </Target>
+
+</Project>

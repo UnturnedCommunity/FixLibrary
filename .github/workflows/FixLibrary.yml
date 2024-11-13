@@ -1,0 +1,68 @@
+name: FixLibrary
+
+on:
+  create:
+    tags:
+      - "*"
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/FixLibrary.yml'
+      - 'Module.cs'
+      - 'Module/RuntimeLibs/**'
+      - 'FixLibrary.csproj'
+  pull_request:
+    paths:
+      - '.github/workflows/FixLibrary.yml'
+      - 'Module.cs'
+      - 'Module/RuntimeLibs/**'
+      - 'FixLibrary.csproj'
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-dotnet@v4
+        name: Setup .NET
+        with:
+          dotnet-version: 8.x
+
+      - name: Install zip
+        run: sudo apt-get install zip
+
+      - name: Build FixLibrary.Module
+        uses: ./.github/actions/project-build
+        id: fixlibrary-module-build
+        with:
+          project_path: '.' # Use current directory for the project
+          nuget_key: ${{ secrets.NUGET_DEPLOY_KEY }}
+          nuget_push: false
+          github_token: ${{ secrets.PAT }}
+
+      - name: Zip FixLibrary artifacts
+        run: "cd bin/Release/net461/linux-x64/FixLibrary && zip -qq -r ./FixLibrary.Module.zip *"
+
+      - name: Upload FixLibrary
+        uses: actions/upload-artifact@v4
+        with:
+          name: FixLibrary.Module.zip
+          path: "bin/Release/net461/linux-x64/FixLibrary/FixLibrary.Module.zip"
+          if-no-files-found: error
+
+      - name: Create Release
+        if: github.event_name == 'create' && github.event.ref_type == 'tag'
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          name: FixLibrary Release v${{ steps.auto-installer-build.outputs.version }}
+          tag: ${{ steps.auto-installer-build.outputs.version }}
+          artifacts: bin/Release/net461/linux-x64/FixLibrary/FixLibrary.Module.zip
+          token: ${{ secrets.PAT }}
+          prerelease: ${{ steps.auto-installer-build.outputs.is_prerelease }}
+          allowUpdates: true
+          draft: true
