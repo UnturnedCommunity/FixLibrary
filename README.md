@@ -69,4 +69,4 @@ Initially, [me, sunnamed](https://github.com/sunnamed434), planned a larger-scal
 
 You install a plugin, only to find you need to remove or replace libraries, install others, and spend tons of time troubleshooting. As a plugin dev, you might even end up editing the plugin, changing library versions, rebuilding, and sending it back and forth with users just to test. Exhausting, right?
 
-I considered integrating this into [RocketModFix](https://github.com/RocketModFix/RocketModFix) directly, but it would have made that project too complicated. My interest in **FixLibrary** comes from wanting to solve the headaches I’ve faced with libraries in **UnturnedGuard** and my other plugins.
+I considered integrating this into [RocketModFix](https://github.com/RocketModFix/RocketModFix) directly, but it would have made that project too complicated. My interest in **FixLibrary** comes from wanting to solve the headaches I've faced with libraries in **UnturnedGuard** and my other plugins.
