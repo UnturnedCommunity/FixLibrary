@@ -59,10 +59,10 @@ jobs:
         if: github.event_name == 'create' && github.event.ref_type == 'tag'
         uses: ncipollo/release-action@v1.14.0
         with:
-          name: FixLibrary Release v${{ steps.auto-installer-build.outputs.version }}
-          tag: ${{ steps.auto-installer-build.outputs.version }}
+          name: FixLibrary Release v${{ steps.fixlibrary-module-build.outputs.version }}
+          tag: ${{ steps.fixlibrary-module-build.outputs.version }}
           artifacts: bin/Release/net461/linux-x64/FixLibrary/FixLibrary.Module.zip
           token: ${{ secrets.PAT }}
-          prerelease: ${{ steps.auto-installer-build.outputs.is_prerelease }}
+          prerelease: ${{ steps.fixlibrary-module-build.outputs.is_prerelease }}
           allowUpdates: true
           draft: true
