@@ -8,7 +8,7 @@ FixLibrary is a Module, which solves a problem with libraries, so you don't need
 
 1. **Stop the Server**: If your server is running, stop it.
 2. **(If installed before)**: Delete `FixLibrary` from `Modules`.
-3. **Download the Latest `FixLibrary`**: Go to the [FixLibrary releases page](https://github.com/RocketModFix/RocketModFix/releases).
+3. **Download the Latest `FixLibrary`**: Go to the [FixLibrary releases page](https://github.com/UnturnedCommunity/FixLibrary/releases).
 4. **Access the Assets**: Open the "Assets" section if it's not already expanded.
 5. **Download the Module**: Click `FixLibrary.Module.zip` to download the latest module.
 6. **Final**: Extract the downloaded archive, open the `FixLibrary` folder, and copy the `FixLibrary` folder to `Modules` (copy the folder, not it's content).
@@ -56,17 +56,17 @@ Would also recommend to read this [post](https://sunnamed434.github.io/posts/ass
 
 To make your plugin safe to use, here are your options:
 
-- **Don't include any libraries** in your plugin. But for complex plugins, that's not realistic.
-- **Vendor libraries**: Copy the library's source code directly into your project. However, you still face issues like shipping the library with your plugin or maintaining its source code.
-- **ONLY .NET 461 or higher/lower**: You can't use .NET Standard normally.
-- **Put Libraries in Unturned_Data\Managed**: Lol, really, nah.
+- **Don't include any libraries** in your plugin. But for complex plugins, this isn't realistic.
+- **Vendor libraries**: Copy the library's source code directly into your project. However, you'll still face issues like shipping the library with your plugin, maintaining its source code, and dealing with larger .DLL file sizes.
+- **Use only .NET 461 or higher/lower**: You can't use .NET Standard normally.
+- **Put libraries in Unturned_Data\Managed**: Not recommended.
 
 **OR** simply skip all that hassle and use **FixLibrary**.
 
 ## A Little History
 
-Initially, [me, sunnamed](https://github.com/sunnamed434), planned a larger-scale project with patches for common issues and the ability to build plugins like Rocket, but on a module level. However, that turned out to be overly complex. The most useful part of my original idea focused on **libraries**, because nearly everyone uses plugins, and the biggest pain point is dealing with libraries.
+Originally, I ([sunnamed](https://github.com/sunnamed434)) planned a larger project with patches for common issues and the ability to build plugins like Rocket, but on a module level. However, this turned out to be too complex. The most useful part of my original idea focused on **libraries**. Almost everyone uses plugins, and the biggest problem is dealing with libraries.
 
-You install a plugin, only to find you need to remove or replace libraries, install others, and spend tons of time troubleshooting. As a plugin dev, you might even end up editing the plugin, changing library versions, rebuilding, and sending it back and forth with users just to test. Exhausting, right?
+When you install a plugin, you often find that you need to remove or replace libraries, install others, and spend a lot of time troubleshooting. As a plugin developer, you might even need to edit the plugin, change library versions, rebuild it, and send it back and forth with users just to test. It's exhausting.
 
 I considered integrating this into [RocketModFix](https://github.com/RocketModFix/RocketModFix) directly, but it would have made that project too complicated. My interest in **FixLibrary** comes from wanting to solve the headaches I've faced with libraries in **UnturnedGuard** and my other plugins.
